@@ -1,3 +1,8 @@
 micronaut:
   application:
     name: producer
+
+number:
+  generator:
+    delay: ${NUMBER_GENERATOR_DELAY:200ms}
+    max-number: ${NUMBER_GENERATOR_MAX_NUMBER:500}
