@@ -22,7 +22,6 @@ public class NumberConsumer {
 
     @Topic("${numbers.kafka.topic-name}")
     public void consumerNumberData(NumberData numberData) {
-
         if (primeNumbersCache.isPrime(numberData.getNumber())) {
             numberFileWriter.writeToFile(numberData);
         }
