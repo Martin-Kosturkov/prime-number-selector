@@ -13,4 +13,4 @@ numbers:
     topic-name: numbers
   generator:
     delay: ${NUMBER_GENERATOR_DELAY:2000ms}
-    max-number: ${NUMBER_GENERATOR_MAX_NUMBER:500}
+    max-number: ${NUMBER_GENERATOR_MAX_NUMBER:100}

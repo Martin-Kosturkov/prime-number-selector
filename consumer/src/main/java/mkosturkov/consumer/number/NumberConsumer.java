@@ -9,15 +9,21 @@ import mosturkov.common.NumberData;
 public class NumberConsumer {
 
     private final NumberService numberService;
+    private final NumberFileWriter numberFileWriter;
 
-    public NumberConsumer(NumberService numberService) {
+    public NumberConsumer(
+            NumberService numberService,
+            NumberFileWriter numberFileWriter) {
+
         this.numberService = numberService;
+        this.numberFileWriter = numberFileWriter;
     }
 
     @Topic("${numbers.kafka.topic-name}")
     public void consumerNumberData(NumberData numberData) {
-        if (numberService.isPrime(numberData.getNumber())) {
 
+        if (numberService.isPrime(numberData.getNumber())) {
+            numberFileWriter.writeToFile(numberData);
         }
     }
 }
