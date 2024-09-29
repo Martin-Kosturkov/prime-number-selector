@@ -13,14 +13,6 @@ import java.time.temporal.ChronoUnit;
 public class NumberFileWriter {
     private static final String FILE_NAME = "generated_numbers.csv";
 
-    public void writeToFile(GeneratedNumberData numberData) {
-        var csvFile = getCsvFile();
-
-        var generatedAt = numberData.generatedAt().truncatedTo(ChronoUnit.MILLIS);
-        var csvRow = "%s,%s".formatted(generatedAt, numberData.number());
-        writeToFile(csvFile, csvRow);
-    }
-
     @PostConstruct
     public void createCsvFile() {
         var file = getCsvFile();
@@ -33,6 +25,14 @@ public class NumberFileWriter {
         }
 
         writeToFile(file, "generated at,number");
+    }
+
+    public void writeToFile(GeneratedNumberData numberData) {
+        var csvFile = getCsvFile();
+
+        var generatedAt = numberData.generatedAt().truncatedTo(ChronoUnit.MILLIS);
+        var csvRow = "%s,%s".formatted(generatedAt, numberData.number());
+        writeToFile(csvFile, csvRow);
     }
 
     private static File getCsvFile() {
