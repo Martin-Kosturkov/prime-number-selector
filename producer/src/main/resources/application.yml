@@ -4,5 +4,5 @@ micronaut:
 
 number:
   generator:
-    delay: ${NUMBER_GENERATOR_DELAY:200ms}
+    delay: ${NUMBER_GENERATOR_DELAY:2000ms}
     max-number: ${NUMBER_GENERATOR_MAX_NUMBER:500}

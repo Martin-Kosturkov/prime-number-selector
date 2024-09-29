@@ -6,22 +6,26 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
 import java.math.BigInteger;
+import java.time.LocalDateTime;
 import java.util.Random;
 
 @Singleton
 public class NumberGeneratorService {
     private static final int MIN_NUMBER = 2;
 
+    private final NumberFileWriter numberFileWriter;
     private final Random random;
     private final long numberGeneratorUpperBound;
 
     @Inject
     public NumberGeneratorService(
+            NumberFileWriter numberFileWriter,
             Random random,
             @Value("${number.generator.max-number}") BigInteger numberGeneratorUpperBound) {
 
         verifyUpperBoundInRange(numberGeneratorUpperBound);
 
+        this.numberFileWriter = numberFileWriter;
         this.random = random;
         this.numberGeneratorUpperBound = numberGeneratorUpperBound.longValue();
     }
@@ -29,6 +33,10 @@ public class NumberGeneratorService {
     @Scheduled(fixedRate = "${number.generator.delay}")
     void generateNumbers() {
         var number = random.nextLong(MIN_NUMBER, numberGeneratorUpperBound);
+        var numberData = new GeneratedNumberData(number, LocalDateTime.now());
+
+        System.out.println(number);
+        numberFileWriter.writeToFile(numberData);
     }
 
     private void verifyUpperBoundInRange(BigInteger numberGeneratorUpperBound) {
