@@ -1,4 +1,4 @@
-package mkosturkov;
+package mkosturkov.producer;
 
 import io.micronaut.runtime.Micronaut;
 

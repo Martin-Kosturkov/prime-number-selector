@@ -1,5 +1,5 @@
 applicationType: default
-defaultPackage: mkosturkov
+defaultPackage: mkosturkov.producer
 testFramework: junit
 sourceLanguage: java
 buildTool: maven

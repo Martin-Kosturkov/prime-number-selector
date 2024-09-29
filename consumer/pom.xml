@@ -19,7 +19,7 @@
         <micronaut.aot.enabled>false</micronaut.aot.enabled>
         <micronaut.aot.packageName>mkosturkov.aot.generated</micronaut.aot.packageName>
         <micronaut.runtime>netty</micronaut.runtime>
-        <exec.mainClass>mkosturkov.Application</exec.mainClass>
+        <exec.mainClass>mkosturkov.producer.Application</exec.mainClass>
     </properties>
 
     <repositories>

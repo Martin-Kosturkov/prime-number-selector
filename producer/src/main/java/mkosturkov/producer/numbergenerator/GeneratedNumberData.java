@@ -1,4 +1,4 @@
-package mkosturkov.numbergenerator;
+package mkosturkov.producer.numbergenerator;
 
 import io.micronaut.serde.annotation.Serdeable;
 

@@ -1,4 +1,4 @@
-package mkosturkov.numbergenerator;
+package mkosturkov.producer.numbergenerator;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Singleton;

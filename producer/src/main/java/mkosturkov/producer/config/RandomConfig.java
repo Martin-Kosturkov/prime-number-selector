@@ -1,4 +1,4 @@
-package mkosturkov.config;
+package mkosturkov.producer.config;
 
 import io.micronaut.context.annotation.Factory;
 import io.micronaut.context.annotation.Primary;

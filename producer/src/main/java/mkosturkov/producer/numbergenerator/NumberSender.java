@@ -1,4 +1,4 @@
-package mkosturkov.numbergenerator;
+package mkosturkov.producer.numbergenerator;
 
 import io.micronaut.configuration.kafka.annotation.KafkaClient;
 import io.micronaut.context.annotation.Value;

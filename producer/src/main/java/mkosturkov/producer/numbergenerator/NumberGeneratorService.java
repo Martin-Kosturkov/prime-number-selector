@@ -1,4 +1,4 @@
-package mkosturkov.numbergenerator;
+package mkosturkov.producer.numbergenerator;
 
 import io.micronaut.context.annotation.Value;
 import io.micronaut.scheduling.annotation.Scheduled;

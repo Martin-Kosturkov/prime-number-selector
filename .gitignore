@@ -13,3 +13,4 @@ out/
 .settings
 .classpath
 .factorypath
+generated_numbers.csv
