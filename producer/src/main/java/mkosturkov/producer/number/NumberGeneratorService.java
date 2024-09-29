@@ -1,4 +1,4 @@
-package mkosturkov.producer.numbergenerator;
+package mkosturkov.producer.number;
 
 import io.micronaut.context.annotation.Value;
 import io.micronaut.scheduling.annotation.Scheduled;
@@ -33,7 +33,7 @@ public class NumberGeneratorService {
     }
 
     @Scheduled(fixedRate = "${numbers.generator.delay}")
-    void generateNumbers() {
+    void generateNumber() {
         var number = random.nextLong(MIN_NUMBER, numberGeneratorUpperBound);
         var numberData = new NumberData(number, LocalDateTime.now());
 
@@ -42,7 +42,6 @@ public class NumberGeneratorService {
     }
 
     private void verifyUpperBoundInRange(BigInteger numberGeneratorUpperBound) {
-        // TODO: make boundaries configurable
         var upperBound = BigInteger.valueOf(Long.MAX_VALUE);
         var lowerBound = BigInteger.valueOf(MIN_NUMBER);
 
