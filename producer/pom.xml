@@ -44,11 +44,6 @@
             <groupId>io.micronaut.kafka</groupId>
             <artifactId>micronaut-kafka</artifactId>
         </dependency>
-        <dependency>
-            <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-jackson-databind</artifactId>
-            <scope>runtime</scope>
-        </dependency>
 
         <!--Others-->
         <dependency>
