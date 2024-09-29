@@ -1,7 +1,6 @@
 package mkosturkov.consumer.number;
 
 import jakarta.annotation.PostConstruct;
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import mosturkov.common.FileUtils;
 import mosturkov.common.NumberData;
@@ -14,7 +13,6 @@ public class NumberFileWriter {
     private static final String FILE_NAME = "prime_numbers.csv";
     private final FileUtils fileUtils;
 
-    @Inject
     public NumberFileWriter(FileUtils fileUtils) {
         this.fileUtils = fileUtils;
     }

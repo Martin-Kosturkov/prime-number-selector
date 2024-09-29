@@ -10,5 +10,6 @@ kafka:
 
 # Custom configs
 numbers:
+  max-number-allowed: 9223372036854775807 # Assumes that Long.MAX_VALUE is the max allowed value to check for prime number.
   kafka:
     topic-name: numbers

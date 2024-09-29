@@ -2,7 +2,6 @@ package mkosturkov.producer.numbergenerator;
 
 import io.micronaut.context.annotation.Value;
 import io.micronaut.scheduling.annotation.Scheduled;
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import mosturkov.common.NumberData;
 
@@ -19,7 +18,6 @@ public class NumberGeneratorService {
     private final Random random;
     private final long numberGeneratorUpperBound;
 
-    @Inject
     public NumberGeneratorService(
             NumberFileWriter numberFileWriter,
             NumberSender numberSender,
