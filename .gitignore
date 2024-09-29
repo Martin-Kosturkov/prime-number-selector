@@ -14,3 +14,4 @@ out/
 .classpath
 .factorypath
 generated_numbers.csv
+prime_numbers.csv
