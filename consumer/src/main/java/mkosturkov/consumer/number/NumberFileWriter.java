@@ -1,5 +1,6 @@
 package mkosturkov.consumer.number;
 
+import io.micronaut.context.annotation.Value;
 import jakarta.annotation.PostConstruct;
 import jakarta.inject.Singleton;
 import mosturkov.common.FileUtils;
@@ -10,11 +11,15 @@ import java.io.File;
 @Singleton
 public class NumberFileWriter {
 
-    private static final String FILE_NAME = "prime_numbers.csv";
     private final FileUtils fileUtils;
+    private final String fileName;
 
-    public NumberFileWriter(FileUtils fileUtils) {
+    public NumberFileWriter(
+            FileUtils fileUtils,
+            @Value("${numbers.output-file-name}") String fileName) {
+
         this.fileUtils = fileUtils;
+        this.fileName = fileName;
     }
 
     @PostConstruct
@@ -33,7 +38,7 @@ public class NumberFileWriter {
         fileUtils.writeLine(csvFile, csvRow);
     }
 
-    private static File getCsvFile() {
-        return new File(new File(FILE_NAME).getAbsolutePath());
+    private File getCsvFile() {
+        return new File(new File(fileName).getAbsolutePath());
     }
 }
