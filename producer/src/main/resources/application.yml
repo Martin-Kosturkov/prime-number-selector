@@ -2,7 +2,15 @@ micronaut:
   application:
     name: producer
 
-number:
+kafka:
+  bootstrap:
+    servers: localhost:29092 # TODO make configurable
+
+
+# Custom configs
+numbers:
+  kafka:
+    topic-name: numbers
   generator:
     delay: ${NUMBER_GENERATOR_DELAY:2000ms}
     max-number: ${NUMBER_GENERATOR_MAX_NUMBER:500}

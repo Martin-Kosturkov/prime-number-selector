@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit;
 
 @Singleton
 public class NumberFileWriter {
-    private static final String FILE_NAME = "files/generated_numbers.csv";
+    private static final String FILE_NAME = "generated_numbers.csv";
 
     public void writeToFile(GeneratedNumberData numberData) {
         var csvFile = getCsvFile();

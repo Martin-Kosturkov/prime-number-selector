@@ -14,29 +14,32 @@ public class NumberGeneratorService {
     private static final int MIN_NUMBER = 2;
 
     private final NumberFileWriter numberFileWriter;
+    private final NumberSender numberSender;
     private final Random random;
     private final long numberGeneratorUpperBound;
 
     @Inject
     public NumberGeneratorService(
             NumberFileWriter numberFileWriter,
+            NumberSender numberSender,
             Random random,
-            @Value("${number.generator.max-number}") BigInteger numberGeneratorUpperBound) {
+            @Value("${numbers.generator.max-number}") BigInteger numberGeneratorUpperBound) {
 
         verifyUpperBoundInRange(numberGeneratorUpperBound);
 
         this.numberFileWriter = numberFileWriter;
+        this.numberSender = numberSender;
         this.random = random;
         this.numberGeneratorUpperBound = numberGeneratorUpperBound.longValue();
     }
 
-    @Scheduled(fixedRate = "${number.generator.delay}")
+    @Scheduled(fixedRate = "${numbers.generator.delay}")
     void generateNumbers() {
         var number = random.nextLong(MIN_NUMBER, numberGeneratorUpperBound);
         var numberData = new GeneratedNumberData(number, LocalDateTime.now());
 
-        System.out.println(number);
         numberFileWriter.writeToFile(numberData);
+        numberSender.send(numberData);
     }
 
     private void verifyUpperBoundInRange(BigInteger numberGeneratorUpperBound) {
