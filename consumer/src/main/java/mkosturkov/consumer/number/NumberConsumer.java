@@ -1,4 +1,4 @@
-package mkosturkov.number;
+package mkosturkov.consumer.number;
 
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
 import io.micronaut.configuration.kafka.annotation.OffsetReset;

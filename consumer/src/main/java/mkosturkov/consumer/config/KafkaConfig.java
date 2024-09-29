@@ -1,4 +1,4 @@
-package mkosturkov.config;
+package mkosturkov.consumer.config;
 
 import io.micronaut.context.annotation.Bean;
 import io.micronaut.context.annotation.Factory;

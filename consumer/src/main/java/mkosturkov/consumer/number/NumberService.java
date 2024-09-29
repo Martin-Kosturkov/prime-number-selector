@@ -1,4 +1,4 @@
-package mkosturkov.number;
+package mkosturkov.consumer.number;
 
 import jakarta.inject.Singleton;
 
