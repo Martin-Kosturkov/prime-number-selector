@@ -8,7 +8,8 @@ import java.io.IOException;
 public class FileUtils {
 
     public void createFile(File file) {
-        file.deleteOnExit();
+        file.delete();
+
         try {
             file.createNewFile();
         } catch (IOException e) {
