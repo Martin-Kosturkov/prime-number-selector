@@ -25,8 +25,8 @@ public class NumberSenderTest {
         numberSender.send(numberData);
 
         // Then
-        verify(producer.send(argThat(producerRecord ->
+        verify(producer).send(argThat(producerRecord ->
                 TOPIC_NAME.equals(producerRecord.topic())
-                        && numberData.equals(producerRecord.value()))));
+                        && numberData.equals(producerRecord.value())));
     }
 }

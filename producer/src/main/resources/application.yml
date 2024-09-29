@@ -6,11 +6,11 @@ kafka:
   bootstrap:
     servers: localhost:29092 # TODO make configurable
 
-
 # Custom configs
 numbers:
+  output-file-name: ${GENERATED_NUMBERS_FILE_NAME:generated_numbers.csv}
   kafka:
     topic-name: numbers
   generator:
-    delay: ${NUMBER_GENERATOR_DELAY:2000ms}
+    delay: ${NUMBER_GENERATOR_DELAY:200ms}
     max-number: ${NUMBER_GENERATOR_MAX_NUMBER:100}
