@@ -19,7 +19,7 @@ public class PrimeNumbersInMemoryCache implements PrimeNumbersCache {
     public void loadCacheAsync(@Value("${numbers.max-number-allowed}") long maxAllowedNumber) {
         new Thread(() -> {
             try {
-                for (long number = 2; number <= maxAllowedNumber / 2; number++) {
+                for (long number = 2; number <= maxAllowedNumber; number++) {
                     if (isPrimeInternal(number)) {
                         PRIME_NUMBERS_CACHE.add(number);
                     }
