@@ -5,11 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class NumberData {
+
+    @Getter
     private long number;
+
     private LocalDateTime generatedAt;
+
+    public LocalDateTime getGeneratedAt() {
+        return generatedAt.truncatedTo(ChronoUnit.MILLIS);
+    }
 }

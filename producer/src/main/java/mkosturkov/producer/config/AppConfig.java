@@ -1,17 +1,21 @@
 package mkosturkov.producer.config;
 
 import io.micronaut.context.annotation.Factory;
-import io.micronaut.context.annotation.Primary;
 import jakarta.inject.Singleton;
+import mosturkov.common.FileUtils;
 
 import java.util.Random;
 
 @Factory
-public class RandomConfig {
+public class AppConfig {
 
     @Singleton
-    @Primary
     public Random random() {
         return new Random();
+    }
+
+    @Singleton
+    public FileUtils fileUtils() {
+        return new FileUtils();
     }
 }

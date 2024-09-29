@@ -3,6 +3,7 @@ package mkosturkov.consumer.number;
 import io.micronaut.configuration.kafka.annotation.KafkaListener;
 import io.micronaut.configuration.kafka.annotation.OffsetReset;
 import io.micronaut.configuration.kafka.annotation.Topic;
+import mosturkov.common.NumberData;
 
 @KafkaListener(offsetReset = OffsetReset.EARLIEST)
 public class NumberConsumer {
@@ -15,7 +16,6 @@ public class NumberConsumer {
 
     @Topic("${numbers.kafka.topic-name}")
     public void consumerNumberData(NumberData numberData) {
-
         if (numberService.isPrime(numberData.getNumber())) {
 
         }

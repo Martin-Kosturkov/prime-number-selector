@@ -4,6 +4,7 @@ import io.micronaut.context.annotation.Value;
 import io.micronaut.scheduling.annotation.Scheduled;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import mosturkov.common.NumberData;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -36,7 +37,7 @@ public class NumberGeneratorService {
     @Scheduled(fixedRate = "${numbers.generator.delay}")
     void generateNumbers() {
         var number = random.nextLong(MIN_NUMBER, numberGeneratorUpperBound);
-        var numberData = new GeneratedNumberData(number, LocalDateTime.now());
+        var numberData = new NumberData(number, LocalDateTime.now());
 
         numberFileWriter.writeToFile(numberData);
         numberSender.send(numberData);
