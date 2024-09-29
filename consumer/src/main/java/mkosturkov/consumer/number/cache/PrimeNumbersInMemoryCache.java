@@ -12,7 +12,7 @@ import java.util.Set;
 @Singleton
 public class PrimeNumbersInMemoryCache implements PrimeNumbersCache {
     private static final Logger logger = LoggerFactory.getLogger(PrimeNumbersInMemoryCache.class);
-    private static final Set<Long> PRIME_NUMBERS_CACHE = new HashSet<>();
+    private static final Set<Long> primeNumbersCache = new HashSet<>();
     private static long cacheMaxCalculatedNumber = 1;
 
     @PostConstruct
@@ -21,7 +21,7 @@ public class PrimeNumbersInMemoryCache implements PrimeNumbersCache {
             try {
                 for (long number = 2; number <= maxAllowedNumber; number++) {
                     if (isPrimeInternal(number)) {
-                        PRIME_NUMBERS_CACHE.add(number);
+                        primeNumbersCache.add(number);
                     }
 
                     cacheMaxCalculatedNumber = number;
@@ -36,7 +36,7 @@ public class PrimeNumbersInMemoryCache implements PrimeNumbersCache {
 
     public boolean isPrime(long number) {
         if (number <= cacheMaxCalculatedNumber) {
-            return PRIME_NUMBERS_CACHE.contains(number);
+            return primeNumbersCache.contains(number);
         }
 
         return isPrimeInternal(number);
