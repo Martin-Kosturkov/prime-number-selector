@@ -13,6 +13,10 @@ import java.util.Random;
 
 @Singleton
 public class NumberGeneratorService {
+
+    /**
+     * The smallest prime number
+     */
     private static final int MIN_NUMBER = 2;
     private static final Logger logger = LoggerFactory.getLogger(NumberGeneratorService.class);
 
