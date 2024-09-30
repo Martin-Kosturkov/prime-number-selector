@@ -6,7 +6,7 @@ import io.micronaut.configuration.kafka.annotation.Topic;
 import mkosturkov.consumer.number.cache.PrimeNumbersCache;
 import mosturkov.common.NumberData;
 
-@KafkaListener(offsetReset = OffsetReset.EARLIEST)
+@KafkaListener(groupId = "number-consumer", offsetReset = OffsetReset.EARLIEST)
 public class NumberConsumer {
 
     private final PrimeNumbersCache primeNumbersCache;
