@@ -7,11 +7,12 @@ import java.io.IOException;
 
 public class FileUtils {
 
-    public void createFile(File file) {
-        file.delete();
-
+    /**
+     * @return true if a new file was created. False if the file has already exists.
+     */
+    public boolean createFile(File file) {
         try {
-            file.createNewFile();
+            return file.createNewFile();
         } catch (IOException e) {
             throw new RuntimeException("File with name %s could not be created".formatted(file.getName()), e);
         }

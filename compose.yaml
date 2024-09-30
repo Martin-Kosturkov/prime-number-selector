@@ -30,6 +30,11 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+  cache:
+    image: redis:7.4.0-alpine
+    restart: always
+    ports:
+      - 6379:6379
 
   producer1:
     image: number-generator-producer
@@ -40,8 +45,9 @@ services:
       - ./files:/files
     environment:
       KAFKA_BOOTSTRAP_SERVER: "kafka:9092"
-      GENERATED_NUMBERS_FILE_PATH: "files/generated_numbers1.csv"
+      GENERATED_NUMBERS_FILE_PATH: "files/generated_numbers.csv"
       NUMBER_GENERATOR_MAX_NUMBER: "1000"
+      REDIS_SERVER: "redis://cache:6379"
     depends_on:
       - kafka
   producer2:
@@ -53,8 +59,9 @@ services:
       - ./files:/files
     environment:
       KAFKA_BOOTSTRAP_SERVER: "kafka:9092"
-      GENERATED_NUMBERS_FILE_PATH: "files/generated_numbers2.csv"
+      GENERATED_NUMBERS_FILE_PATH: "files/generated_numbers.csv"
       NUMBER_GENERATOR_MAX_NUMBER: "1000"
+      REDIS_SERVER: "redis://cache:6379"
     depends_on:
       - kafka
   consumer1:

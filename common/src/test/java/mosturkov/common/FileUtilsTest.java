@@ -41,7 +41,6 @@ public class FileUtilsTest {
         fileUtils.createFile(file);
 
         // Then
-        verify(file).delete();
         verify(file).createNewFile();
     }
 

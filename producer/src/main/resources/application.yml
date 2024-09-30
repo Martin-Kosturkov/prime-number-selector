@@ -7,6 +7,9 @@ kafka:
     servers: ${KAFKA_BOOTSTRAP_SERVER:`localhost:29092`}
 
 # Custom configs
+redis:
+  server: ${REDIS_SERVER:`redis://localhost:6379`}
+
 numbers:
   output-file-name: ${GENERATED_NUMBERS_FILE_PATH:`generated_numbers.csv`}
   kafka:
