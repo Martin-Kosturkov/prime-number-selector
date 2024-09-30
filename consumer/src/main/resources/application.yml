@@ -6,11 +6,11 @@ micronaut:
 
 kafka:
   bootstrap:
-    servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:29092}
+    servers: ${KAFKA_BOOTSTRAP_SERVER:`localhost:29092`}
 
 # Custom configs
 numbers:
   max-number-allowed: 9223372036854775807 # Assumes that Long.MAX_VALUE is the max allowed value to check for prime number.
-  output-file-name: ${PRIME_NUMBERS_FILE_NAME:prime_numbers.csv}
+  output-file-name: ${PRIME_NUMBERS_FILE_NAME:`prime_numbers.csv`}
   kafka:
     topic-name: numbers

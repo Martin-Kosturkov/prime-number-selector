@@ -17,8 +17,9 @@
     <properties>
         <packaging>jar</packaging>
         <micronaut.aot.enabled>false</micronaut.aot.enabled>
-        <micronaut.aot.packageName>mkosturkov.aot.generated</micronaut.aot.packageName>
+        <micronaut.aot.packageName>mkosturkov.producer.aot.generated</micronaut.aot.packageName>
         <micronaut.runtime>netty</micronaut.runtime>
+        <exec.mainClass>mkosturkov.producer.Application</exec.mainClass>
     </properties>
 
     <repositories>
@@ -120,7 +121,7 @@
                         </path>
                     </annotationProcessorPaths>
                     <compilerArgs>
-                        <arg>-Amicronaut.processing.group=mkosturkov</arg>
+                        <arg>-Amicronaut.processing.group=mkosturkov.producer</arg>
                         <arg>-Amicronaut.processing.module=producer</arg>
                     </compilerArgs>
                 </configuration>

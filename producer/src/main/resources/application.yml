@@ -4,11 +4,11 @@ micronaut:
 
 kafka:
   bootstrap:
-    servers: ${KAFKA_BOOTSTRAP_SERVER:localhost:29092}
+    servers: ${KAFKA_BOOTSTRAP_SERVER:`localhost:29092`}
 
 # Custom configs
 numbers:
-  output-file-name: ${GENERATED_NUMBERS_FILE_NAME:generated_numbers.csv}
+  output-file-name: ${GENERATED_NUMBERS_FILE_NAME:`generated_numbers.csv`}
   kafka:
     topic-name: numbers
   generator:
