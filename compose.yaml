@@ -29,6 +29,16 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+  init-kafka-topic:
+    image: confluentinc/cp-kafka:7.7.1
+    depends_on:
+      - kafka
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      kafka-topics --bootstrap-server kafka:9092 --list
+      kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic numbers --replication-factor 1 --partitions 5
+      "
 
   producer1:
     image: number-generator-producer
@@ -42,7 +52,7 @@ services:
       GENERATED_NUMBERS_FILE_PATH: "files/generated_numbers1.csv"
       NUMBER_GENERATOR_MAX_NUMBER: "1000"
     depends_on:
-      - kafka
+      - init-kafka-topic
   producer2:
     image: number-generator-producer
     build: producer
@@ -55,7 +65,7 @@ services:
       GENERATED_NUMBERS_FILE_PATH: "files/generated_numbers2.csv"
       NUMBER_GENERATOR_MAX_NUMBER: "1000"
     depends_on:
-      - kafka
+      - init-kafka-topic
   consumer1:
     image: number-generator-consumer
     build: consumer
@@ -67,7 +77,7 @@ services:
       KAFKA_BOOTSTRAP_SERVER: "kafka:9092"
       PRIME_NUMBERS_FILE_PATH: "files/prime_numbers1.csv"
     depends_on:
-      - kafka
+      - init-kafka-topic
   consumer2:
     image: number-generator-consumer
     build: consumer
@@ -79,4 +89,4 @@ services:
       KAFKA_BOOTSTRAP_SERVER: "kafka:9092"
       PRIME_NUMBERS_FILE_PATH: "files/prime_numbers2.csv"
     depends_on:
-      - kafka
+      - init-kafka-topic
