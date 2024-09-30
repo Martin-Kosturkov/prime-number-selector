@@ -4,6 +4,8 @@ import io.micronaut.context.annotation.Value;
 import io.micronaut.scheduling.annotation.Scheduled;
 import jakarta.inject.Singleton;
 import mosturkov.common.NumberData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -12,6 +14,8 @@ import java.util.Random;
 @Singleton
 public class NumberGeneratorService {
     private static final int MIN_NUMBER = 2;
+    private static final Logger logger = LoggerFactory.getLogger(NumberGeneratorService.class);
+
 
     private final NumberFileWriter numberFileWriter;
     private final NumberSender numberSender;
@@ -34,11 +38,15 @@ public class NumberGeneratorService {
 
     @Scheduled(fixedRate = "${numbers.generator.delay}")
     void generateNumber() {
-        var number = random.nextLong(MIN_NUMBER, numberGeneratorUpperBound);
-        var numberData = new NumberData(number, LocalDateTime.now());
+        try {
+            var number = random.nextLong(MIN_NUMBER, numberGeneratorUpperBound);
+            var numberData = new NumberData(number, LocalDateTime.now());
 
-        numberFileWriter.writeToFile(numberData);
-        numberSender.send(numberData);
+            numberFileWriter.writeToFile(numberData);
+            numberSender.send(numberData);
+        } catch (Exception e) {
+            logger.error("Error generating and sending number {}", e.getMessage(), e);
+        }
     }
 
     private void verifyUpperBoundInRange(BigInteger numberGeneratorUpperBound) {
