@@ -25,7 +25,7 @@ it will be processed without using the cache.
 - Redis is used for distributed locking to avoid possible issues of multiple threads trying to create the same file or writing to the same file simultaneously.
 
 ### Run project
-There is a docker compose that starts everything, including 2 producers and 2 consumers containers. Here are the steps to run it.
+There is a docker compose that starts everything, including 2 producer and 2 consumer containers. Below are the steps to run it.
 
 - Open terminal and navigate to the project directory.
 - run `mvnw clean install` (this should generate runnable jar files. **Note that it might require java home to point to java 21**)
