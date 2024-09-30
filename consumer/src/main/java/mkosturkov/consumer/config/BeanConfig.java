@@ -5,7 +5,7 @@ import jakarta.inject.Singleton;
 import mosturkov.common.FileUtils;
 
 @Factory
-public class AppConfig {
+public class BeanConfig {
 
     @Singleton
     public FileUtils fileUtils() {

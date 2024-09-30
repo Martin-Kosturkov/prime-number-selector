@@ -7,7 +7,7 @@ import mosturkov.common.FileUtils;
 import java.util.Random;
 
 @Factory
-public class CommonBeanConfig {
+public class BeanConfig {
 
     @Singleton
     public Random random() {
