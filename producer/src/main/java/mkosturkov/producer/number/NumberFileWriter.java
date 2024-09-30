@@ -28,18 +28,17 @@ public class NumberFileWriter {
     @PostConstruct
     public void createCsvFile() {
         var file = getCsvFile();
-
-        var lock = redissonClient.getFairLock(fileName);
+        var synchronizationLock = redissonClient.getFairLock(fileName);
 
         try {
-            lock.lock();
+            synchronizationLock.lock();
             var isNewFile = fileUtils.createFile(file);
 
             if (isNewFile) {
                 fileUtils.writeLine(file, "generated at,number");
             }
         } finally {
-            lock.unlock();
+            synchronizationLock.unlock();
         }
     }
 
@@ -49,13 +48,13 @@ public class NumberFileWriter {
         var generatedAt = numberData.getGeneratedAt();
         var csvRow = "%s,%s".formatted(generatedAt, numberData.getNumber());
 
-        var lock = redissonClient.getFairLock(fileName);
+        var synchronizationLock = redissonClient.getFairLock(fileName);
 
         try {
-            lock.lock();
+            synchronizationLock.lock();
             fileUtils.writeLine(csvFile, csvRow);
         } finally {
-            lock.unlock();
+            synchronizationLock.unlock();
         }
     }
 

@@ -9,6 +9,9 @@ kafka:
     servers: ${KAFKA_BOOTSTRAP_SERVER:`localhost:29092`}
 
 # Custom configs
+redis:
+  server: ${REDIS_SERVER:`redis://localhost:6379`}
+
 numbers:
   max-number-allowed: 9223372036854775807 # Assumes that Long.MAX_VALUE is the max allowed value to check for prime number.
   output-file-name: ${PRIME_NUMBERS_FILE_PATH:`prime_numbers.csv`}

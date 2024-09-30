@@ -73,7 +73,8 @@ services:
       - ./files:/files
     environment:
       KAFKA_BOOTSTRAP_SERVER: "kafka:9092"
-      PRIME_NUMBERS_FILE_PATH: "files/prime_numbers1.csv"
+      PRIME_NUMBERS_FILE_PATH: "files/prime_numbers.csv"
+      REDIS_SERVER: "redis://cache:6379"
     depends_on:
       - kafka
   consumer2:
@@ -85,6 +86,7 @@ services:
       - ./files:/files
     environment:
       KAFKA_BOOTSTRAP_SERVER: "kafka:9092"
-      PRIME_NUMBERS_FILE_PATH: "files/prime_numbers2.csv"
+      PRIME_NUMBERS_FILE_PATH: "files/prime_numbers.csv"
+      REDIS_SERVER: "redis://cache:6379"
     depends_on:
       - kafka
