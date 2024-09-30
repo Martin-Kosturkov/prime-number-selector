@@ -39,3 +39,12 @@ services:
       KAFKA_BOOTSTRAP_SERVER: "kafka:9092"
     depends_on:
       - kafka
+  consumer:
+    image: number-generator-consumer
+    build: consumer
+    ports:
+      - 8081:8081
+    environment:
+      KAFKA_BOOTSTRAP_SERVER: "kafka:9092"
+    depends_on:
+      - kafka
