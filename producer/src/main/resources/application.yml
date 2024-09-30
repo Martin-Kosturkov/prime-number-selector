@@ -8,7 +8,7 @@ kafka:
 
 # Custom configs
 numbers:
-  output-file-name: ${GENERATED_NUMBERS_FILE_NAME:`generated_numbers.csv`}
+  output-file-name: ${GENERATED_NUMBERS_FILE_PATH:`generated_numbers.csv`}
   kafka:
     topic-name: numbers
   generator:
