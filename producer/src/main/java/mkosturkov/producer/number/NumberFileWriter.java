@@ -28,17 +28,10 @@ public class NumberFileWriter {
     @PostConstruct
     public void createCsvFile() {
         var file = getCsvFile();
-        var synchronizationLock = redissonClient.getFairLock(fileName);
+        var isNewFile = fileUtils.createFile(file);
 
-        try {
-            synchronizationLock.lock();
-            var isNewFile = fileUtils.createFile(file);
-
-            if (isNewFile) {
-                fileUtils.writeLine(file, "generated at,number");
-            }
-        } finally {
-            synchronizationLock.unlock();
+        if (isNewFile) {
+            fileUtils.writeLine(file, "generated at,number");
         }
     }
 

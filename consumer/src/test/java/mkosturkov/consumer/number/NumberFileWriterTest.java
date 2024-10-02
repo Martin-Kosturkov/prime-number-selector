@@ -30,9 +30,6 @@ public class NumberFileWriterTest {
     @Test
     public void createCsvFile_whenNewFileCreated_writeInitialLine() {
         // Given
-        var mockedLock = mock(RLock.class);
-
-        when(redissonClient.getFairLock(TEST_FILE_NAME)).thenReturn(mockedLock);
         when(fileUtils.createFile(argThat(file -> TEST_FILE_NAME.equals(file.getName()))))
                 .thenReturn(true);
 
@@ -44,17 +41,11 @@ public class NumberFileWriterTest {
         verify(fileUtils).writeLine(
                 argThat(file -> TEST_FILE_NAME.equals(file.getName())),
                 eq("generated at,number"));
-
-        verify(mockedLock).lock();
-        verify(mockedLock).unlock();
     }
 
     @Test
     public void createCsvFile_whenFileAlreadyExist_skipWritingInitialLine() {
         // Given
-        var mockedLock = mock(RLock.class);
-
-        when(redissonClient.getFairLock(TEST_FILE_NAME)).thenReturn(mockedLock);
         when(fileUtils.createFile(argThat(file -> TEST_FILE_NAME.equals(file.getName()))))
                 .thenReturn(false);
 
@@ -64,30 +55,6 @@ public class NumberFileWriterTest {
         // Then
         verify(fileUtils).createFile(argThat(file -> TEST_FILE_NAME.equals(file.getName())));
         verify(fileUtils, never()).writeLine(any(), any());
-
-        verify(mockedLock).lock();
-        verify(mockedLock).unlock();
-    }
-
-    @Test
-    void createCsvFile_whenExceptionThrown_unlockSynchronization() {
-        // Given
-        var mockedLock = mock(RLock.class);
-
-        when(redissonClient.getFairLock(TEST_FILE_NAME)).thenReturn(mockedLock);
-        when(fileUtils.createFile(argThat(file -> TEST_FILE_NAME.equals(file.getName()))))
-                .thenThrow(new RuntimeException());
-
-        // When
-        assertThrows(
-                RuntimeException.class,
-                fileWriter::createCsvFile);
-
-        // Then
-        verify(fileUtils, never()).writeLine(any(), any());
-
-        verify(mockedLock).lock();
-        verify(mockedLock).unlock();
     }
 
     @Test
