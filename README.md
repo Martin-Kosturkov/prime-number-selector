@@ -29,7 +29,7 @@ There is a docker compose that starts everything, including 2 producer and 2 con
 
 - Open terminal and navigate to the project directory.
 - run `mvnw clean install` (this should generate runnable jar files. **Note that it might require java home to point to java 21**)
-- When the build is ready, execute: `docker compose up -d` to start the services on the background.
+- When the build is ready, execute: `docker compose up -d` to start the services in the background.
 - The `NUMBER_GENERATOR_MAX_NUMBER` env variable can be anything between 3 and 9223372036854775807 (Long.MAX_VALUE) but is set to 1000 by default to produce more readable and easier to check numbers.
 
 The first time you run docker compose, it will take some time for the images to be downloaded. When everything starts successfully,
